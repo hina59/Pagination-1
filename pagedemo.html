@@ -1,0 +1,70 @@
+<html>
+<head>
+
+<style type="text/css">
+.paginationclass{
+    
+margin: 19px 28px;    
+}
+.paginationclass span{
+    margin-left:15px;
+    display:inline-block;
+}
+.pagination-controle li{
+    display: inline-block;
+}
+.pagination-controle button{
+    font-size: 12px;
+    margin-top: -26px;
+    cursor:pointer;
+    
+}
+.pagination{
+    margin:5px 12px !important;
+}
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+
+<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+<div ng-app="sampleapp">
+    <div ng-controller="samplecontoller" ng-init="showData()">
+        
+        
+        <ul>
+            <li class="paginationclass" style="font-weight:bold;"><span>Name</span><span>Age</span><span>Designation</span></li>            
+ <li class="paginationclass" ng-repeat="datalist in datalists | pagination: curPage * pageSize | limitTo: pageSize">
+     <div><span>{{ datalist.uname }} </span><span>{{ datalist.mail }}</span><span>{{ datalist.pass }}</span></div> 
+ </li>
+</ul> 
+        
+    <div class="pagination pagination-centered" ng-show="datalists.length">
+<ul class="pagination-controle pagination">
+ <li>
+  <button type="button" class="btn btn-primary" ng-disabled="curPage == 0"
+ ng-click="curPage=curPage-1"> &lt; PREV</button>
+ </li>
+ <li>
+ <span>Page {{curPage + 1}} of {{ numberOfPages() }}</span>
+ </li>
+ <li>
+ <button type="button" class="btn btn-primary"
+ ng-disabled="curPage >= datalists.length/pageSize - 1"
+ ng-click="curPage = curPage+1">NEXT &gt;</button>
+ </li>
+</ul>
+</div>
+    
+    <script src="pagedemo.js"></script>
+    
+    </div>
+</div>
+
+	
+</body>
+</html>
